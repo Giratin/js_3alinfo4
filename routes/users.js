@@ -1,14 +1,22 @@
 var express = require('express');
+// const { getAllUsers } = require('../controllers/user.controller');
+// const getAllUsers = require('../controllers/user.controller').getAllUsers;
+
+const userController = require("../controllers/user.controller");
+
 var router = express.Router();
 
 /**
  * @Path /users
 */
 
+router.route("/")
+  .get(userController.getAllUsers)
+  .post(userController.createUser);
 
-router.get('/', function(req, res, next) {
-  console.log(req);
-  res.status(404).json({ message: 'respond with a resource' });
-});
+router.route("/:id")
+  .get(userController.findOneById)
+  .put(userController.updateOneById)
+  .delete(userController.deleteOneById);
 
 module.exports = router;

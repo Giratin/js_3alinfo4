@@ -9,8 +9,10 @@ var usersRouter = require('./routes/users');
 
 const mongoose = require("mongoose");
 const { exit } = require('process');
+require("dotenv").config();
 
-mongoose.connect('mongodb://localhost:27017/3alinfo3_first_database',
+
+mongoose.connect(process.env.MONGO_URL,
   (exc) => {
     if (exc) {
       console.log(exc);
